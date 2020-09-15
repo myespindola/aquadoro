@@ -34,13 +34,11 @@ class _GoalCardState extends State<GoalCard> {
             ),
             Spacer(),
             Container(
-              padding: EdgeInsets.only(),
               child: _concentracionInput(),
               width: anchoPantalla * 0.15,
             ),
             Spacer(),
             Container(
-              padding: EdgeInsets.only(),
               child: _descansoInput(),
               width: anchoPantalla * 0.15,
             ),
