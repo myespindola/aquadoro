@@ -1,3 +1,4 @@
+import 'package:aquadoro/Aquadoro.dart';
 import 'package:aquadoro/GoalsPage.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       routes: {
         'GoalsPage': (BuildContext context) => GoalsPage(),
+        'Aquadoro': (BuildContext context) => Aquadoro(),
       },
       initialRoute: 'GoalsPage',
     );
