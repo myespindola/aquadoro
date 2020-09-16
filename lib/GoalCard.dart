@@ -1,5 +1,6 @@
 import 'package:aquadoro/Aquadoro.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GoalCard extends StatefulWidget {
   GoalCard({this.animationController});
@@ -111,7 +112,7 @@ class _GoalCardState extends State<GoalCard> {
       initialValue: initialActivity(),
       decoration: InputDecoration(
         labelText: "Actividad",
-        labelStyle: TextStyle(
+        labelStyle: GoogleFonts.quicksand(
           fontSize: 13,
         ),
       ),
@@ -130,7 +131,7 @@ class _GoalCardState extends State<GoalCard> {
       ),
       decoration: InputDecoration(
         labelText: "Focus",
-        labelStyle: TextStyle(
+        labelStyle: GoogleFonts.quicksand(
           fontSize: 13,
         ),
       ),
@@ -149,7 +150,7 @@ class _GoalCardState extends State<GoalCard> {
       ),
       decoration: InputDecoration(
         labelText: "Relax",
-        labelStyle: TextStyle(
+        labelStyle: GoogleFonts.quicksand(
           fontSize: 13,
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:aquadoro/GoalCard.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GoalsPage extends StatefulWidget {
   @override
@@ -13,57 +14,72 @@ class _GoalsPageState extends State<GoalsPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: _fadeText(),
-        backgroundColor: Colors.cyan[600],
-      ),
       body: Stack(
         children: [
-          Container(
-            color: Colors.cyan[600],
-          ),
-          Column(
-            children: [
-              Flexible(
-                child: ListView.builder(
-                  itemBuilder: (context, int index) {
-                    return Dismissible(
-                      key: new UniqueKey(),
-                      child: _metas[index],
-                      background: Container(
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: AlignmentDirectional.centerStart,
-                        color: Colors.deepOrange[700],
-                        child: Icon(Icons.delete_outline),
-                      ),
-                      onDismissed: (direction) {
-                        setState(() {
-                          _metas.removeAt(index);
-                        });
-                      },
-                    );
+          fondoMetas(),
+          SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  height: 10,
+                ),
+                _fadeText(),
+                Container(
+                  height: 10,
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    itemBuilder: (context, int index) {
+                      return Dismissible(
+                        key: new UniqueKey(),
+                        child: _metas[index],
+                        background: Container(
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.only(left: 10),
+                          alignment: AlignmentDirectional.centerStart,
+                          color: Colors.deepOrange[700],
+                          child: Icon(Icons.delete_outline),
+                        ),
+                        onDismissed: (direction) {
+                          setState(() {
+                            _metas.removeAt(index);
+                          });
+                        },
+                      );
+                    },
+                    itemCount: _metas.length,
+                  ),
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    _agregarCard();
                   },
-                  itemCount: _metas.length,
+                  child: Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.cyan[50],
+                    size: 50,
+                  ),
                 ),
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  _agregarCard();
-                },
-                child: Icon(
-                  Icons.add_circle_outline,
-                  color: Colors.cyan[50],
-                  size: 50,
-                ),
-              ),
-              Container(
-                height: 30,
-              )
-            ],
+                Container(
+                  height: 30,
+                )
+              ],
+            ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget fondoMetas() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            Colors.cyan[600],
+            Colors.cyan[300],
+          ],
+        ),
       ),
     );
   }
@@ -80,7 +96,7 @@ class _GoalsPageState extends State<GoalsPage> with TickerProviderStateMixin {
               "Vamos a \nhacerlo :)",
               "¿Que has estado \ndejando pendiente?",
             ],
-            textStyle: TextStyle(
+            textStyle: GoogleFonts.craftyGirls(
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
               color: Colors.blueGrey[50],
