@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 class Aquadoro extends StatefulWidget {
   Aquadoro({
@@ -22,6 +23,7 @@ class _AquadoroState extends State<Aquadoro> {
   int contador = 0;
 
   bool kindActivity = false;
+
   int startState = 1;
   int tFocusSeg = 0;
   int tRelaxSeg = 0;
@@ -29,6 +31,7 @@ class _AquadoroState extends State<Aquadoro> {
   bool revisarTiempoDes = false;
   bool botonDeshabilitado = false;
   bool resetDeshabilitado = true;
+  String animacionActual = 'Reset';
   @override
   void initState() {
     // TODO: implement initState
@@ -247,12 +250,11 @@ class _AquadoroState extends State<Aquadoro> {
           width: 357,
           height: 357,
           margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: AssetImage('assets/Acuadoro.png'),
-              fit: BoxFit.cover,
-            ),
+          child: FlareActor(
+            'assets/Aquadoro.flr',
+            alignment: Alignment.center,
+            fit: BoxFit.cover,
+            animation: animacionActual,
           ),
         ),
         Container(
@@ -315,6 +317,7 @@ class _AquadoroState extends State<Aquadoro> {
               ],
             ),
             onPressed: () {
+              animacionActual = "Reset";
               if (tFocusSeg > 1) {
                 revisarTiempoCon = true;
                 startState = 1;
@@ -365,6 +368,7 @@ class _AquadoroState extends State<Aquadoro> {
                     setState(() {
                       botonDeshabilitado = true;
                       resetDeshabilitado = false;
+                      animacionActual = 'LoopFocus';
                     });
                     tFocusSeg = widget.tFocus * 60;
                     Timer.periodic(Duration(seconds: 1), (timer) {
@@ -402,6 +406,9 @@ class _AquadoroState extends State<Aquadoro> {
                           }
                           tFocusSeg--;
                         }
+                        if (tFocusSeg < 11) {
+                          animacionActual = 'FinFocus';
+                        }
                       });
                     });
                   }
@@ -412,6 +419,7 @@ class _AquadoroState extends State<Aquadoro> {
                     setState(() {
                       botonDeshabilitado = true;
                       resetDeshabilitado = false;
+                      animacionActual = 'LoopRelax';
                     });
                     tRelaxSeg = widget.tRelax * 60;
                     Timer.periodic(Duration(seconds: 1), (timer) {
@@ -445,6 +453,9 @@ class _AquadoroState extends State<Aquadoro> {
                           }
                           tRelaxSeg--;
                         }
+                        if (tRelaxSeg < 11) {
+                          animacionActual = 'FinRelax';
+                        }
                       });
                     });
                   }
@@ -455,6 +466,7 @@ class _AquadoroState extends State<Aquadoro> {
                     setState(() {
                       botonDeshabilitado = true;
                       resetDeshabilitado = false;
+                      animacionActual = 'LoopRelax';
                     });
                     tRelaxSeg = 30 * 60;
                     Timer.periodic(Duration(seconds: 1), (timer) {
@@ -485,6 +497,9 @@ class _AquadoroState extends State<Aquadoro> {
                             tiempoPantalla = '$m:$s';
                           }
                           tRelaxSeg--;
+                        }
+                        if (tRelaxSeg < 11) {
+                          animacionActual = 'FinRelax';
                         }
                       });
                     });
